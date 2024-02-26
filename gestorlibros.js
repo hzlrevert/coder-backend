@@ -82,12 +82,17 @@ class BookManager {
   }
 
   saveBooksToFile(books) {
-    //MostRar los libros entes de guardarlos
-    console.log("Libros antes de guardar:", books);
-    // Guardar el array de libros en el archivo
-    fs.writeFileSync(this.path, JSON.stringify(books, null, 2), 'utf-8');
-    
-
+    try {
+      console.log("Intentando guardar libros. Ruta:", this.path);
+      console.log("Libros antes de guardar:", books);
+  
+      // Guardar el array de libros en el archivo
+      fs.writeFileSync(this.path, JSON.stringify(books, null, 2), 'utf-8');
+  
+      console.log("Libros guardados correctamente.");
+    } catch (error) {
+      console.error("Error al guardar los libros:", error.message);
+    }
   }
 
   generateId(books) {
