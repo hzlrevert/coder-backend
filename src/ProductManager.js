@@ -17,7 +17,7 @@ class ProductManager {
 
   async getProductById(productId) {
     const allProducts = await this.getAllProducts();
-    return allProducts.find(product => product.id === productId);
+    return allProducts.find(product => product.id == productId);
   }
 }
 

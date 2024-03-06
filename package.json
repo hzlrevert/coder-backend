@@ -2,15 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "coder-backend",
-  "main": "ECMAScript.js",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hzlrevert/coder-backend.git"
   },
-  "author": "",
+  "author": "hzlrevert",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/hzlrevert/coder-backend/issues"
