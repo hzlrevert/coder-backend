@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hzlrevert/coder-backend/issues"
   },
-  "homepage": "https://github.com/hzlrevert/coder-backend#readme"
+  "homepage": "https://github.com/hzlrevert/coder-backend#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
 }
