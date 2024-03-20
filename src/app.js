@@ -1,11 +1,20 @@
 
 const express = require('express');
 const ProductManager = require('./ProductManager');
+const productsRouter = require('./routes/products');
+const cartsRouter = require('./routes/carts');
+const CartManager = require('./CartManager');
 
 const app = express();
 const port = 8080;
 
 const productManager = new ProductManager('./src/productos.json');
+const cartManager = new CartManager('./carrito.json');
+
+app.use(express.json());
+
+app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
 
 app.get('/products', async (req, res) => {
   try {
