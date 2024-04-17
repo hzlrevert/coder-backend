@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const productsRouter = require('./routes/products');
-const cartsRouter = require('./routes/carts');
+const cartsRouter = require('./src/routes/carts');
 
 // Importar la configuración de la base de datos desde un archivo separado
 const connectToDatabase = require('./config/db');
@@ -15,7 +15,12 @@ app.use(express.json()); // Permitir el manejo de JSON
 app.use(morgan('dev')); // Middleware de registro (opcional)
 
 // Conectar a la base de datos
-connectToDatabase();
+connectToDatabase().then(() => {
+  
+  app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+  });
+});
 
 // Definir rutas
 app.use('/api/products', productsRouter);
