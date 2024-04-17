@@ -1,24 +1,38 @@
-const fs = require('fs').promises;
-
 class ProductManager {
-  constructor(filePath) {
-    this.filePath = filePath;
+  async getAllProducts(limit, page, sort, query) {
+    const filter = query ? { [query]: req.query[query] } : {};
+    const options = {
+      limit: parseInt(limit),
+      page: parseInt(page),
+      sort: sort ? { price: sort === 'asc' ? 1 : -1 } : {}
+    };
+    
+    const result = await Product.paginate(filter, options);
+    return result;
   }
 
-  async getAllProducts() {
-    try {
-      const data = await fs.readFile(this.filePath, 'utf-8');
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading products file:', error);
-      throw error;
-    }
+  async getProductById(pid) {
+    const product = await Product.findById(pid);
+    return product;
   }
 
-  async getProductById(productId) {
-    const allProducts = await this.getAllProducts();
-    return allProducts.find(product => product.id == productId);
+  async addProduct(productData) {
+    const newProduct = new Product(productData);
+    await newProduct.save();
+    return newProduct;
+  }
+
+  async updateProduct(pid, updatedData) {
+    const updatedProduct = await Product.findByIdAndUpdate(pid, updatedData, { new: true });
+    return updatedProduct;
+  }
+
+  async deleteProduct(pid) {
+    await Product.findByIdAndRemove(pid);
   }
 }
 
 module.exports = ProductManager;
+
+
+const { Product, Cart } = require('./models');
