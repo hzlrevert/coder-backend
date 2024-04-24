@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { Cart } = require('../models');
-const { Product } = require('../models');
+const { Cart } = require('./models');
+const { Product } = require('./models');
 
 // Ruta para obtener un carrito específico
 router.get('/:cid', async (req, res) => {
